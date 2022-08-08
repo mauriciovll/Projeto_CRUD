@@ -15,4 +15,10 @@ async function findAll(){
   return db.collection("customers").find().toArray();
 };
 
-module.exports = {findAll};
+// Função para inserir clientes no banco de dados usando a conexão global e executar um callback ao seu término.
+async function insert(customer){
+  const db = await connect();
+  return db.collection("customers").insertOne(customer);
+};
+
+module.exports = {findAll, insert};
