@@ -1,6 +1,6 @@
 // o Módulo db.js é responsável pela conexão e manipulação do nosso banco de dados, usando o driver nativo do MongoDB.
 
-const {MongoClient} = require("mongodb");
+const {MongoClient,ObjectId} = require("mongodb");
 async function connect(){
   if(global.db) return global.db;
   const conn = await MongoClient.connect("mongodb://localhost:27017/");
@@ -21,4 +21,18 @@ async function insert(customer){
   return db.collection("customers").insertOne(customer);
 };
 
-module.exports = {findAll, insert};
+// Função para retornar apenas um cliente, baseado em seu id.
+async function findOne(id){
+  const db = await connect();
+  const objId = new ObjectId(id);
+  return db.collection("customers").findOne(objId);
+};
+
+// Função para fazer a atualização (update) dos dados inseridos no form
+async function update(id,customer){
+  const filter = {_id:new ObjectId(id)};
+  const db = await connect();
+  return db.collection("customers").updateOne(filter, {$set:customer});
+};
+
+module.exports = {findAll, insert, findOne, update};

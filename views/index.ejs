@@ -28,7 +28,7 @@
               <td style="width:50%"><%= customer.nome %></td>
               <td style="width:15%"><%= customer.idade %></td>
               <td style="width:15%"><%= customer.uf %></td>
-              <td><!--em breve-->></td>
+              <td><a href="/edit/<%= customer._id %>">Editar</a></td>
             </tr>  
           <%});
         }%>;
