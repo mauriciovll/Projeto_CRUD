@@ -1,5 +1,5 @@
 # Projeto_CRUD
-Projeto teste para implementação de funções CRUD em node.js com banco de dados Mongo DB, desenvolvido com base em Duarte (2017).
+Projeto para testar implementação de funções CRUD em node.js com banco de dados Mongo DB, desenvolvido com base em Duarte (2017).
 
 **Referências:**
 
