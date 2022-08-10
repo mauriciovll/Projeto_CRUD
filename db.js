@@ -35,4 +35,11 @@ async function update(id,customer){
   return db.collection("customers").updateOne(filter, {$set:customer});
 };
 
-module.exports = {findAll, insert, findOne, update};
+// Função para deletar dados inseridos no banco.
+async function deleteOne(id){
+  const db = await connect();
+  const filter = {_id:new ObjectId(id)};
+  return db.collection("customers").deleteOne(filter);
+};
+
+module.exports = {findAll, insert, findOne, update, deleteOne};

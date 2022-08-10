@@ -9,7 +9,7 @@ router.get('/', async function(req, res) {
 
 /* GET new page. */
 router.get('/new', function(req, res, next){
-  res.render('new',{title:"Cadastro de Cliente", doc:{}});
+  res.render('new',{title:"Cadastro de Cliente", doc:{}, action:'/new'});
 });
 
 /* POST new page. */
@@ -36,6 +36,13 @@ router.post('/edit/:id', async function(req, res){
   const uf = req.body.uf;
   await db.update(id, {nome, idade, uf});
   res.redirect('/?edit=true');
+});
+
+/* GET delete page. */
+router.get('/delete/:id', async function(req, res){
+  const id = req.params.id;
+  await db.deleteOne(id);
+  res.redirect('/?delete=true');
 });
 
 module.exports = router;
